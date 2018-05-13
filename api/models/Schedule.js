@@ -22,12 +22,13 @@ module.exports = {
 
             if(scheduleList && scheduleList.length > 0){
                 //Get all the client information
-                var clientIDs = _.pluck(scheduleList, "client")
-                UserService.findByIDs(clientIDs, function(err, clientObjList){
+                // var clientIDs = _.pluck(scheduleList, "client")
+                UserService.getAllUserByID(function(err, clientObjList){
                     if(err)
                         return cb(err);
 
                     _.each(scheduleList, function(scheduleObj, idx){
+                        scheduleList[idx].user = clientObjList[scheduleList[idx].user];
                         scheduleList[idx].client = clientObjList[scheduleList[idx].client];
                     });
 

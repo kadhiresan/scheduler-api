@@ -41,6 +41,22 @@ module.exports = {
         });
     },
 
+    getAllUserByID: function (cb) {
+        fs.readFile(dbFile, function(err, content) {
+            if (err)
+                return cb(err);
+
+            var userObjList = {};
+            var dbContent = JSON.parse(content);
+            
+            _.each(dbContent.user, function(userObj){
+                userObjList[userObj.id] = userObj;
+            });
+
+            cb(null, userObjList);
+        });
+    },
+
     getListOfUserAvialbeForSchedule: function (user, cb) {
         fs.readFile(dbFile, function(err, content) {
             if (err)
