@@ -29,12 +29,12 @@ module.exports = {
                 return cb(err);
 
             var dbContent = JSON.parse(content);
-            
+
             //Check time slot - if its free or not
             var clinetTimeSlot = _.where(dbContent.schedule, {client: user.id, scheduleDate: input.scheduleDate});
             var userTimeSlot = _.where(dbContent.schedule, {user: input.user, scheduleDate: input.scheduleDate});
             if(clinetTimeSlot.length > 0 || userTimeSlot.length > 0){
-                return cb({message: "This time slot is not available", status: 400});
+                return cb(null, {message: "This time slot is not available", status: 400});
             }
 
             input.id = dbContent.schedule.length+1;
@@ -67,6 +67,8 @@ module.exports = {
     },
 
     edit: function (user, body, cb) {
+        //TODO: Have to do this func..
+
         //Read data from file
         // fs.readFile(dbFile, function(err, content) {
         //     if (err)
