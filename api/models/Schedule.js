@@ -14,7 +14,7 @@ module.exports = {
     * Get all the user from file based on logged in user id, output will be array of object
     */
     get: function(user, cb) {
-        ScheduleServices.find(user.id, function(err, scheduleList){
+        ScheduleServices.find(user, function(err, scheduleList){
             if (err){
                 sails.log("Schedule get Error::", err);
                 return cb({message : "something went wrong please try after some time", status: 400});

@@ -6,13 +6,17 @@ const dbFile = sails.config.globals.dbFile;
 
 module.exports = {
 
-	find: function (userId, cb) {
+	find: function (user, cb) {
+        var condition = {user: user.id};
+        if(user.canSchedule){
+            condition = {client: user.id};
+        }
 		fs.readFile(dbFile, function(err, content) {
             if (err)
                 return cb(err);
 
             var dbContent = JSON.parse(content);
-            cb(null, _.where(dbContent.schedule, {user: userId}))
+            cb(null, _.where(dbContent.schedule, condition))
         });
 	},
 
