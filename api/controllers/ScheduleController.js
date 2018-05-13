@@ -31,7 +31,7 @@ module.exports = {
 		if(!req.param('id'))
 			return  res.negotiate({message : "parameter(s) is missing", status: 400});
 
-		Schedule.delete(req.param('id'), function(err, scheduleRes) {
+		Schedule.delete(req.user, req.param('id'), function(err, scheduleRes) {
 			if(err)
 				return res.negotiate(err);
 			

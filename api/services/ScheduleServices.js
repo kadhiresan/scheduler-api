@@ -48,7 +48,7 @@ module.exports = {
         });
     },
 
-    delete: function (scheduleID, cb) {
+    delete: function (user, scheduleID, cb) {
         //Read data from file
         fs.readFile(dbFile, function(err, content) {
             if (err)
@@ -57,7 +57,7 @@ module.exports = {
             var dbContent = JSON.parse(content);
             
             //Delete the data
-            dbContent.schedule = _.without(dbContent.schedule, _.findWhere(dbContent.schedule, {id: scheduleID}));
+            dbContent.schedule = _.without(dbContent.schedule, _.findWhere(dbContent.schedule, {id: scheduleID, client: user.id}));
            
             //Store updated data into the file
             fs.writeFile(sails.config.globals.dbFile, JSON.stringify(dbContent)); 

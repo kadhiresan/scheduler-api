@@ -57,8 +57,8 @@ module.exports = {
     * ip: id = schedule tabel id
     * Delete an appointment based on the id and return the responce(object)
     */
-    delete: function(id, cb) {
-        ScheduleServices.delete(id, function(err, deleteRes){
+    delete: function(user, id, cb) {
+        ScheduleServices.delete(user, id, function(err, deleteRes){
             if (err){
                 sails.log("Schedule delete Error::", err);
                 return cb({message : "something went wrong please try after some time", status: 400});
