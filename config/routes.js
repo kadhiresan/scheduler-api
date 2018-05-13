@@ -52,5 +52,5 @@ module.exports.routes = {
   'GET /schedule'        : 'ScheduleController.get', //Get all the Schedule(appointment) info based on logged in user
   'POST /schedule'       : 'ScheduleController.add', //Create the appointment
   'DELETE /schedule/:id' : 'ScheduleController.delete', //Delete the appointment
-  // 'PUT /schedule/:id'    : 'ScheduleController.edit', //Reschedule the appointment
+  'PUT /schedule'        : 'ScheduleController.edit', //Reschedule the appointment, user can edit only date and desc as of now
 };

@@ -57,13 +57,27 @@ module.exports = {
     * Delete an appointment based on the id and return the responce(object)
     */
     delete: function(id, cb) {
-        ScheduleServices.delete(id, function(err, scheduledRes){
+        ScheduleServices.delete(id, function(err, deleteRes){
             if (err){
                 sails.log("Schedule delete Error::", err);
                 return cb({message : "something went wrong please try after some time", status: 400});
             }
 
-            cb(null, scheduledRes);
+            cb(null, deleteRes);
+        });
+    }
+    /**
+    * ip: user = {"userName": "---","timeZone": "---","canSchedule": -,"id": "--"} and input = {"scheduleDate": "date with time", "description": "---"}
+    * Edit the scheduled appointment based on the id, Allow only date and desc to edit.
+    */
+    edit: function(user, body, cb) {
+        ScheduleServices.edit(user, body, function(err, editRes){
+            if (err){
+                sails.log("Schedule delete Error::", err);
+                return cb({message : "something went wrong please try after some time", status: 400});
+            }
+
+            cb(null, editRes);
         });
     }
 

@@ -38,5 +38,17 @@ module.exports = {
 			res.json(scheduleRes);
 		});
 	},
+
+	edit: function(req, res) {
+		if(!req.param('id') || !req.body.scheduleDate || !req.body.description)
+			return  res.negotiate({message : "parameter(s) is missing", status: 400});
+
+		Schedule.edit(req.user, req.body, function(err, scheduleRes) {
+			if(err)
+				return res.negotiate(err);
+			
+			res.json(scheduleRes);
+		});
+	},
 };
 

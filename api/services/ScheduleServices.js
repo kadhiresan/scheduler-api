@@ -54,4 +54,22 @@ module.exports = {
         });
     },
 
+    edit: function (user, body, cb) {
+        //Read data from file
+        // fs.readFile(dbFile, function(err, content) {
+        //     if (err)
+        //         return cb(err);
+
+        //     var dbContent = JSON.parse(content);
+            
+        //     //Delete the data
+        //     dbContent.schedule = _.without(dbContent.schedule, _.findWhere(dbContent.schedule, {id: body.id, client: user.id}));
+           
+        //     //Store updated data into the file
+        //     fs.writeFile(sails.config.globals.dbFile, JSON.stringify(dbContent)); 
+           
+        //     cb(null, {message: "Deleted Successfully", status:200})
+        // });
+    },
+
 };
