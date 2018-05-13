@@ -96,6 +96,7 @@ module.exports.http = {
   customMiddleware: function(app){
     app.use(expressJwt({secret: sails.config.globals.jwt_secret}).unless({path: [
       '/user/login',
+      '/user/signup',
     ]}));
     
     app.use(function (err, req, res, next) {

@@ -7,18 +7,42 @@ const dbFile = sails.config.globals.dbFile;
 module.exports = {
 
 	findOne: function (input, cb) {
-		fs.readFile(dbFile, function(err, content) {
+        fs.readFile(dbFile, function(err, content) {
             if (err)
                 return cb(err);
 
             var dbContent = JSON.parse(content);
             var user = _.where(dbContent.user, input);
             if(user && user.length > 0){
-            	delete user[0].password;
-            	cb(err, user[0]);
+                delete user[0].password;
+                cb(err, user[0]);
             }else{
-            	cb(err, null);
+                cb(err, null);
             }
+        });
+    },
+
+    signup: function (input, cb) {
+		fs.readFile(dbFile, function(err, content) {
+            if (err)
+                return cb(err);
+
+            var dbContent = JSON.parse(content);
+            var user = _.where(dbContent.user, {userName: input.userName});
+            
+            //send err msg if user is exist
+            if(user && user.length > 0)
+            	return cb({message: "username already exists", status: 400});
+            
+            //create new user
+            input.id = dbContent.user.length+1;
+            input.id = input.id.toString(); 
+            dbContent.user.push(input);
+
+            //Store updated data into the file
+            fs.writeFile(sails.config.globals.dbFile, JSON.stringify(dbContent)); 
+            
+        	cb(null, {message: "users have been added successfully", status: 200});
         });
 	},
 

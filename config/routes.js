@@ -46,6 +46,7 @@ module.exports.routes = {
 
   // UserController
   'POST /user/login'        : 'UserController.login',
+  'POST /user/signup'       : 'UserController.signup',
   'GET /user/schedule/list' : 'UserController.getListOfUserAvialbeForSchedule', //List of users (Who will not have the scheduling options)
 
   // ScheduleController

@@ -31,6 +31,21 @@ module.exports = {
         });
     },
     /**
+    * ip: body = {"userName": "---", password: ***,timeZone: ---, canSchedule: -}
+    * Create the new user, Here we will consider name as unique field
+    */
+    signup: function(body, cb) {
+        UserService.signup(body, function(err, user){
+            if (err){
+                sails.log("User signup Error::", err);
+                return cb(err);
+            }
+
+            cb(null, user);
+            
+        });
+    },
+    /**
     * ip: user = {"userName": "---","timeZone": "---","canSchedule": -,"id": "--"}
     * Get all the user who are all avilabe for Schedule(ie, "canSchedule":false), output will be array of objects
     */
