@@ -35,13 +35,14 @@ module.exports = {
             	return cb({message: "username already exists", status: 400});
             
             //create new user
+            input.canSchedule = true; //By default all the user can book the appointment
             input.id = dbContent.user.length+1;
             input.id = input.id.toString(); 
             dbContent.user.push(input);
 
             //Store updated data into the file
             fs.writeFile(sails.config.globals.dbFile, JSON.stringify(dbContent)); 
-            
+
         	cb(null, {message: "users have been added successfully", status: 200});
         });
 	},

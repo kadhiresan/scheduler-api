@@ -15,27 +15,12 @@
             "id":"2"
         },
         {  
-            "userName":"kad",
+            "userName":"kadhir",
             "password":"54321",
             "timeZone":"PST",
             "canSchedule":false,
             "id":"3"
         }
     ],
-    "schedule":[  
-        {  
-            "id":"1",
-            "user":"2",
-            "client":"1",
-            "scheduleDate":"2016-09-17T17:77:77.421Z",
-            "description": "For fevor"
-        },
-        {  
-            "id":"2",
-            "user":"2",
-            "client":"1",
-            "scheduleDate":"2016-09-17T18:88:88.421Z",
-            "description": "For test"
-        }
-    ]
+    "schedule":[]
 }
