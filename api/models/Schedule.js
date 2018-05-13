@@ -65,7 +65,7 @@ module.exports = {
 
             cb(null, deleteRes);
         });
-    }
+    },
     /**
     * ip: user = {"userName": "---","timeZone": "---","canSchedule": -,"id": "--"} and input = {"scheduleDate": "date with time", "description": "---"}
     * Edit the scheduled appointment based on the id, Allow only date and desc to edit.
